@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1560261071879.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2645083433",
+    "id" : "E3235B26",
+    "lastKnownWriteTime" : 1560262838,
+    "last_content_update" : 1560263847110,
+    "path" : "~/workspace/ad1-l4-p1/report/l4p1.Rmd",
+    "project_path" : "report/l4p1.Rmd",
+    "properties" : {
+        "cursorPosition" : "43,0",
+        "last_setup_crc32" : "592FB57A734d2602",
+        "scrollLine" : "2",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,1 @@
+"0","dados = readr::read_tsv(here::here('./data/marioKart.txt'))"

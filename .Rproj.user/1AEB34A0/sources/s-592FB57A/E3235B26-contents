@@ -1,0 +1,47 @@
+---
+title: "l4p1"
+author: "Vinícius Seixas"
+date: "11 de junho de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(here)
+library(tidyverse)
+library(broom)
+library(modelr)
+library(ggplot2)
+```
+
+```{r message=FALSE}
+dados = readr::read_tsv(here::here('./data/marioKart.txt'))
+```
+
+```{r}
+dados_filter = dados %>% filter(totalPr < 100) 
+totalpr_x_nbids = dados_filter %>% ggplot(aes(x = totalPr, y = nBids)) + geom_point()
+totalpr_x_nbids
+```
+
+```{r}
+dados_filter.lm = dados_filter %>% lm(formula = totalPr ~ nBids)
+tidy(dados_filter.lm)
+glance(dados_filter.lm)
+```
+
+```{r}
+dados_c_aumento = dados %>% mutate(aumento = totalPr - startPr)
+dados_filter_c_aumento = dados_c_aumento %>% filter(aumento < 100)
+aumento_x_nbids = dados_filter_c_aumento %>% ggplot(aes(x = aumento, y = nBids)) + geom_point()
+aumento_x_nbids
+```
+
+```{r}
+dados_filter_c_aumento.lm = dados_filter_c_aumento %>% lm(formula = aumento ~ nBids)
+tidy(dados_filter_c_aumento.lm)
+glance(dados_filter_c_aumento.lm)
+```
+
+```{r}
+tidy(dados_filter_c_aumento.lm, conf.int = TRUE, conf.level = 0.95) %>% select(-p.value)
+```
