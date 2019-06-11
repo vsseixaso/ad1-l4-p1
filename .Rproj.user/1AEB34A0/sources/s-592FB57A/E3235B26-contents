@@ -17,6 +17,8 @@ library(ggplot2)
 dados = readr::read_tsv(here::here('./data/marioKart.txt'))
 ```
 
+
+
 ```{r}
 dados_filter = dados %>% filter(totalPr < 100) 
 totalpr_x_nbids = dados_filter %>% ggplot(aes(x = totalPr, y = nBids)) + geom_point()
@@ -28,6 +30,8 @@ dados_filter.lm = dados_filter %>% lm(formula = totalPr ~ nBids)
 tidy(dados_filter.lm)
 glance(dados_filter.lm)
 ```
+
+
 
 ```{r}
 dados_c_aumento = dados %>% mutate(aumento = totalPr - startPr)
@@ -44,4 +48,30 @@ glance(dados_filter_c_aumento.lm)
 
 ```{r}
 tidy(dados_filter_c_aumento.lm, conf.int = TRUE, conf.level = 0.95) %>% select(-p.value)
+```
+
+
+
+```{r}
+totalpr_x_stockphoto = dados_filter %>% ggplot(aes(x = totalPr, y = stockPhoto)) + geom_jitter(height = .1, alpha = .5)
+totalpr_x_stockphoto
+```
+
+```{r}
+dados_filter_totalpr_x_stockphoto.lm = dados_filter %>% lm(formula = totalPr ~ stockPhoto)
+tidy(dados_filter_totalpr_x_stockphoto.lm)
+glance(dados_filter_totalpr_x_stockphoto.lm)
+```
+
+
+
+```{r}
+totalpr_x_cond = dados_filter %>% ggplot(aes(x = totalPr, y = cond)) + geom_jitter(height = .1, alpha = .5)
+totalpr_x_cond
+```
+
+```{r}
+dados_filter_totalpr_x_cond.lm = dados_filter %>% lm(formula = totalPr ~ cond)
+tidy(dados_filter_totalpr_x_cond.lm)
+glance(dados_filter_totalpr_x_cond.lm)
 ```
